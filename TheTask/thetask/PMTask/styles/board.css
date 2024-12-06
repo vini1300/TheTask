@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+:root {
+    --transition: all 0.25s ease-in-out;
+    --elastic: cubic-bezier(0.25, 1, 0.5, 1);
+    
+    /* Cores do tema claro */
+    --bg-color: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-hover: #f0f0f0;
+    --text-color: #2c3e50;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --primary-color: #808080;
+    --secondary-color: #e9ecef;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --btn-hover: #696969;
+}
+
+/* Tema escuro */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-hover: #363636;
+    --text-color: #e1e1e1;
+    --text-secondary: #a0a0a0;
+    --border-color: #404040;
+    --primary-color: #A9A9A9;
+    --secondary-color: #343a40;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --btn-hover: #505050;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    font-weight: 400;
+
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Container e Grid */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.boards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+/* Board Card Styles */
+.board-item {
+    position: relative;
+    transition: var(--transition);
+}
+
+.board-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    
+    /* Removendo border-radius e adicionando borda pixelada */
+    border-radius: 0;
+    border: none;
+    outline: none;
+    
+    /* Suavizando a cor da borda pixelada */
+    box-shadow: 
+        /* Borda externa */
+        -4px -4px 0 0 var(--text-secondary),
+        4px -4px 0 0 var(--text-secondary),
+        -4px 4px 0 0 var(--text-secondary),
+        4px 4px 0 0 var(--text-secondary),
+        -2px -2px 0 0 var(--text-secondary),
+        2px -2px 0 0 var(--text-secondary),
+        -2px 2px 0 0 var(--text-secondary),
+        2px 2px 0 0 var(--text-secondary);
+}
+
+/* Ajustando o hover para manter o efeito pixelado */
+.board-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        /* Borda externa */
+        -4px -4px 0 0 var(--text-secondary),
+        4px -4px 0 0 var(--text-secondary),
+        -4px 4px 0 0 var(--text-secondary),
+        4px 4px 0 0 var(--text-secondary),
+        -2px -2px 0 0 var(--text-secondary),
+        2px -2px 0 0 var(--text-secondary),
+        -2px 2px 0 0 var(--text-secondary),
+        2px 2px 0 0 var(--text-secondary);
+}
+
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.board-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.board-date {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.board-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.board-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition);
+}
+
+.board-card:hover .board-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Novo Board Card */
+.new-board {
+    border: none;
+    box-shadow: 
+        /* Borda externa pontilhada */
+        -4px -4px 0 0 var(--border-color),
+        4px -4px 0 0 var(--border-color),
+        -4px 4px 0 0 var(--border-color),
+        4px 4px 0 0 var(--border-color),
+        -2px -2px 0 0 var(--border-color),
+        2px -2px 0 0 var(--border-color),
+        -2px 2px 0 0 var(--border-color),
+        2px 2px 0 0 var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.add-board-content {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.add-board-content i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.new-board:hover {
+    border-color: var(--primary-color);
+    background: var(--bg-hover);
+}
+
+.new-board:hover .add-board-content {
+    color: var(--primary-color);
+}
+
+/* Botões */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-outline:hover {
+    background: var(--bg-hover);
+    border-color: var(--text-color);
+}
+
+.btn-icon {
+    padding: 0.8rem;
+    border-radius: 50%;
+    background: var(--bg-hover);
+    color: var(--text-color);
+}
+
+.btn-action {
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: var(--bg-hover);
+    color: var(--text-color);
+}
+
+.btn-edit:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* Responsividade */    
+@media (max-width: 768px) {
+    .header-content {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .boards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .board-card {
+        height: auto;
+        min-height: 150px;
+    }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.board-item {
+    animation: fadeIn 0.3s var(--elastic) forwards;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-content h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-content h2::before {
+    content: '\f0fe';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+    outline: none;
+}
+
+.color-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.color-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 0;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 6px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-modal {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.btn-confirm {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-confirm:hover {
+    background: var(--primary-color);
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background: var(--bg-secondary);
+    color: var(--text-color);
+}
+
+.btn-cancel:hover {
+    background: var(--bg-hover);
+    transform: translateY(-2px);
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalSlideDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+#logout-btn {
+    color: var(--text-color);
+    border: none;
+}   
+
+.board-title{
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 1.3rem;  
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+
+/* Adicionando regra para ícones SVG */
+img[src*="icons/"] {
+    width: 32px;
+    height: 32px;
+    transition: var(--transition);
+}
+
+/* Invertendo cores no modo escuro */
+[data-theme="dark"] img[src*="icons/"] {
+    filter: invert(1);
+}
+
+/* Ajustando ícones específicos se necessário */
+.board-actions img {
+    width: 16px;
+    height: 16px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/board.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>Task Boards</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1><img src="icons/quest.svg" alt=""> Lista de Quests</h1>
+      <div class="header-actions">
+        <button id="logout-btn" class="btn btn-outline">
+          <img src="icons/enter.svg" alt="">
+          <span>Sair</span>
+        </button>
+        <button id="theme-toggle" class="btn btn-icon">
+          <img src="icons/dark.svg" alt="Tema Escuro" class="theme-icon dark-icon">
+          <img src="icons/light.svg" alt="Tema Claro" class="theme-icon light-icon" style="display: none;">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div id="boards-container" class="boards-grid">
+        <!-- Boards serão inseridas aqui dinamicamente -->
+      </div>
+    </div>
+  </main>
+
+  <script src="board.js" type="module"></script>
+</body>
+
+</html>

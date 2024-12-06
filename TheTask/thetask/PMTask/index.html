@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taskboard Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="login-container">
+      <form id="login-form">
+        <div class="logo">
+          <img src="icons/logo.svg" alt="logo">
+        </div>
+        <h1 class="title">The Task</h1>
+        <div class="input-group">
+          <img src="icons/mail.svg" alt="email">
+          <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+        </div>
+        <button type="submit">
+          <img src="icons/enter.svg" alt="submit">
+          Entrar
+        </button>
+      </form>
+      <button id="theme-toggle">
+        <img src="icons/dark.svg" alt="Tema Escuro" class="theme-icon dark-icon">
+        <img src="icons/light.svg" alt="Tema Claro" class="theme-icon light-icon" style="display: none;">
+        <span>Modo Escuro</span>
+      </button>
+    </div>
+  </div>
+  <script type="module" src="Login.js"></script>
+  <script type="module" src="loginTheme.js"></script>
+</body>
+</html>
