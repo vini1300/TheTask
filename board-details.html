@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/board-details.css">
+    <title>Detalhes do Quadro</title>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <button id="back-btn" class="btn-icon">
+                <img src="icons/back.svg" alt="Voltar">
+            </button>
+            <h1 id="board-title">Carregando...</h1>
+        </div>
+        <div class="header-actions">
+            <button id="add-column-btn" class="btn-primary">
+                <img src="icons/add.svg" alt="Adicionar">
+                Nova Coluna
+            </button>
+            <button id="theme-toggle" class="btn-icon">
+                <img src="icons/dark.svg" alt="Tema Escuro" class="theme-icon dark-icon">
+                <img src="icons/light.svg" alt="Tema Claro" class="theme-icon light-icon" style="display: none;">
+            </button>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div id="board-container" class="board-container">
+            <!-- As colunas serão inseridas aqui dinamicamente -->
+        </div>
+    </main>
+
+    <script src="board-details.js" type="module"></script>
+</body>
+</html> 
